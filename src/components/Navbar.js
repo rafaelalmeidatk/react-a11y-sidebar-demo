@@ -9,7 +9,7 @@ const HamburguerIcon = () => (
 
 const Navbar = ({ onSidebarClick }) => (
   <div className={styles.navbar}>
-    <button className={styles.navbarIcon} onClick={onSidebarClick} aria-label="Menu">
+    <button className={styles.navbarIcon} onClick={onSidebarClick} aria-label="Open menu">
       <HamburguerIcon />
     </button>
   </div>

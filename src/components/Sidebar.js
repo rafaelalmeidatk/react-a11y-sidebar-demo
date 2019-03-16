@@ -1,4 +1,5 @@
 import React from 'react';
+import Modal from 'react-modal';
 import styles from './Sidebar.module.css';
 
 const CloseIcon = () => (
@@ -8,27 +9,46 @@ const CloseIcon = () => (
 );
 
 const Sidebar = ({ isOpen, onCloseClick }) => (
-  <aside className={`${styles.sidebar} ${isOpen ? styles.sidebarVisible : ''}`}>
-    <nav className={styles.container}>
-      <button className={styles.closeButton} onClick={onCloseClick} aria-label="Close">
+  <Modal
+    isOpen={isOpen}
+    onRequestClose={onCloseClick}
+    closeTimeoutMS={300}
+    className={{
+      base: styles.container,
+      afterOpen: styles.containerAfterOpen,
+      beforeClose: styles.containerBeforeClose
+    }}
+    overlayClassName={{
+      base: styles.overlay,
+      afterOpen: styles.overlayAfterOpen,
+      beforeClose: styles.overlayBeforeClose
+    }}
+    aria={{
+      labelledby: 'sidebar-header'
+    }}
+  >
+    <nav>
+      <button className={styles.closeButton} onClick={onCloseClick} aria-label="Close menu">
         <CloseIcon />
       </button>
 
-      <header className={styles.header}>Sidebar</header>
+      <header id="sidebar-header" className={styles.header}>
+        Sidebar
+      </header>
 
       <ul className={styles.content}>
         <li>
-          <a href="#">Item One</a>
+          <a href="sidebar_link_one">Item One</a>
         </li>
         <li>
-          <a href="#">Item Two</a>
+          <a href="sidebar_link_two">Item Two</a>
         </li>
         <li>
-          <a href="#">Item Three</a>
+          <a href="sidebar_link_three">Item Three</a>
         </li>
       </ul>
     </nav>
-  </aside>
+  </Modal>
 );
 
 export default Sidebar;
